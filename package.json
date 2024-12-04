@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.18.0",
+    "@supabase/supabase-js": "^2.46.2",
     "@types/react-router": "^5.1.20",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "todoappline": "file:"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
