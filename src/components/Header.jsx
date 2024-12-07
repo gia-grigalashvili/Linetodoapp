@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Burger from "/public/imgs/Vector.png";
 import Search from "/public/imgs/Vector - Copy.png";
+import arrow from "/public/imgs/material-symbols-light_navigate-next.png";
+import sun from "/public/imgs/ph_sun-light.png";
+import star from "/public/imgs/ph_star-thin.png";
+import evaluation from "/public/imgs/evaluation-Bf1J4d5n.png";
+import complete from "/public/imgs/complete-BS8KPSVz.png";
+import { UserButton } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -8,6 +15,13 @@ export default function Header() {
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
+
+  const menuItems = [
+    { id: 1, name: "My Day", icon: sun, route: "/" },
+    { id: 2, name: "Important", icon: star, route: "/important" },
+    { id: 3, name: "Complete", icon: evaluation, route: "/complete" },
+    { id: 4, name: "Results", icon: complete, route: "/results" },
+  ];
 
   return (
     <div>
@@ -19,7 +33,7 @@ export default function Header() {
           className="lg:hidden cursor-pointer"
         />
 
-        <div className="relative">
+        <div className="hidden lg:block relative">
           <input
             type="text"
             className="w-[400px] bg-[#E7E8EA] p-[10px] rounded-[10px] pl-[30px]"
@@ -46,41 +60,40 @@ export default function Header() {
         </div>
 
         <div className="flex gap-4 items-center justify-end">
-          <img src={Search} alt="Search Icon" />
-          <div className="h-[1rem] bg-[#82868F] w-[0.0625rem]"></div>
-          <div className="cl-rootBox cl-userButton-root 🔒️ cl-internal-nfscg9">
-            <img src="" alt="User Icon" />
+          <div className="flex gap-[5px]">
+            <h1 className="hidden lg:block">EN</h1>
+            <img className="hidden lg:block" src={arrow} alt="" />
           </div>
+
+          <img className="lg:hidden" src={Search} alt="Search Icon" />
+          <div className="lg:hidden h-[1rem] bg-[#82868F] w-[0.0625rem]"></div>
+
+          <UserButton afterSignOutUrl="/signin" />
         </div>
       </div>
 
-      {/* Sidebar - Always visible on lg screens and controlled on smaller screens */}
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } lg:block fixed left-0 lg:top-0 h-full lg:w-[25%] w-[35%] bg-white shadow-md transition-transform duration-300`}
+        } lg:block fixed left-0 lg:top-0 h-full lg:w-[25%] bg-white shadow-md transition-transform duration-300`}
       >
-        <div className="p-4">
-          <ul className="flex flex-col gap-[10px]">
-            <li className="flex gap-[10px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-              ></svg>
-              <h1>My Day</h1>
-            </li>
-            <li className="flex gap-[10px]">
-              <h1>Important</h1>
-            </li>
-            <li className="flex gap-[10px]">
-              <h1>Complete</h1>
-            </li>
-            <li className="flex gap-[10px]">
-              <h1>Results</h1>
-            </li>
+        <div className="p-4 lg:mt-[100px]">
+          <ul className="flex  flex-col gap-[10px]">
+            {menuItems.map((item) => (
+              <li
+                key={item.id}
+                className="flex w-[90%] items-center p-[10px] rounded-md hover:bg-[#C7CAD0]  gap-[10px]"
+              >
+                <img
+                  className={item.id > 2 ? "w-[20px] h-[20px]" : ""}
+                  src={item.icon}
+                  alt={item.name}
+                />
+                <Link to={item.route} className="no-underline text-black">
+                  {item.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
