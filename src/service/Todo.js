@@ -1,18 +1,14 @@
 import { supabase } from "../confing/config.js";
 
-export const getTodos = async (userid) => {
-  const { data, error } = await supabase
-    .from("todos")
-    .select("*")
-    .eq("user_id", userid);
+export const getTodos = async () => {
+  const { data, error } = await supabase.from("todo").select("*");
+
   if (error) throw error;
   return data;
 };
 
-export const addTodo = async ({ description, user_id }) => {
-  const { data, error } = await supabase
-    .from("todos")
-    .insert([{ description, user_id, isComplated: false, isImportant: false }]);
+export const addTodo = async ({ addTodos }) => {
+  const { data, error } = await supabase.from("todo").insert([addTodos]);
 
   if (error) throw error;
   return data;
@@ -20,7 +16,7 @@ export const addTodo = async ({ description, user_id }) => {
 
 export const deleteTodo = async (userId, taskId) => {
   const { data, error } = await supabase
-    .from("todos")
+    .from("todo")
     .delete()
     .eq("id", taskId)
     .eq("user_id", userId);
