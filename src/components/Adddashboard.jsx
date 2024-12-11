@@ -1,30 +1,33 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useGetTodos } from "../hooks/useGetTodos";
-import { useInsertTodos } from "../hooks/iinsertTodos";
+import useInsertTodos from "../hooks/iinsertTodos";
+import { useUser } from "@clerk/clerk-react";
 import plus from "/public/imgs/Vectors.png";
-import { MyContext } from "../context/Context";
-
+import { format } from "date-fns"; // Make sure you import format from date-fns
+import dateicon from "/public/imgs/dateicon.png";
+import { colors } from "../colors/colors";
+import three from "/public/imgs/Frame 20063.png";
+import Methodss from "./Methodss";
 export default function Adddashboard() {
-  const { userid } = useContext(MyContext);
-  const { data, error, isLoading, isError } = useGetTodos(userid);
-  const { mutate: addTodo } = useInsertTodos();
+  const formattedDate = format(new Date(), "dd/MM/yy");
+  const { user } = useUser();
+  const { data, error, isLoading, isError } = useGetTodos(user.id);
+  const { mutateAsync: addTodo } = useInsertTodos();
   const [description, setDescription] = useState("");
-  const [todos, setTodos] = useState([]);
-
+  const [showmethods, setshowmethods] = useState(false);
+  //feris cvlileba
+  const getRandomColor = () => {
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+  const showmeth = () => {
+    setshowmethods(!showmethods);
+  };
+  console.log(showmeth);
+  //amatebs todos
   const handleAddTodo = async () => {
-    if (description && userid) {
-      const currentDate = new Date().toLocaleDateString();
-      const newTodo = {
-        description,
-        date: currentDate,
-        userId: userid,
-      };
-
-      setTodos((prevTodos) => [...prevTodos, newTodo]);
-
+    if (description.trim() !== "") {
+      await addTodo({ description, user_id: user.id, date: formattedDate });
       setDescription("");
-
-      await addTodo(newTodo);
     }
   };
 
@@ -55,16 +58,25 @@ export default function Adddashboard() {
           />
         </button>
       </div>
-
-      <ul className="mt-4">
-        {todos.map((todo, index) => (
+      <ul className="px-4 grid lg:grid-cols-3 lg:gap-6 mb-[3rem] grid-cols-2 gap-6 md:grid-cols-2 md:gap-6">
+        {data?.map((todo, index) => (
           <li
             key={index}
-            className="flex justify-between items-center p-2 border-b border-gray-300"
+            className="relative rounded-lg w-auto shadow-md h-auto p-4 border border-gray-200 flex flex-col"
+            style={{ backgroundColor: getRandomColor() }}
           >
             <div>
+              <div className="bg-[#FDF8F2] max-w-[8rem] h-[30px] px-[10px] rounded-full flex justify-start gap-2 items-center mb-4">
+                <img src={dateicon} alt="Date Icon" />
+                <p className="text-[14px] font-normal text-textColor leading-6">
+                  {formattedDate}
+                </p>
+              </div>
               <p>{todo.description}</p>
-              <p className="text-sm text-gray-500">{todo.date}</p>
+              <div className="flex justify-end mt-[1.62rem]">
+                <img onClick={showmeth} src={three} alt="" />
+                {showmethods && <Methodss />}
+              </div>
             </div>
           </li>
         ))}

@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTodos } from "../service/Todo";
-import { useUser } from "@clerk/clerk-react";
-export const useGetTodos = () => {
-  const { user } = useUser();
-  const userId = user.id;
+
+export const useGetTodos = (user_id) => {
   return useQuery({
-    queryFn: () => getTodos(userId),
-    queryKey: ["todo", userId],
+    queryFn: () => getTodos(user_id),
+    queryKey: ["todo"],
   });
 };
