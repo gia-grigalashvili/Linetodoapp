@@ -1,7 +1,10 @@
 import { supabase } from "../confing/config.js";
 
-export const getTodos = async () => {
-  const { data, error } = await supabase.from("todo").select("*");
+export const getTodos = async (user_id) => {
+  const { data, error } = await supabase
+    .from("todo")
+    .select("*")
+    .eq("user_id", user_id);
 
   if (error) throw error;
   return data;
