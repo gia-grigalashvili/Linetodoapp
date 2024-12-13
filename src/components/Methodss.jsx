@@ -1,10 +1,17 @@
-import React from "react";
-import sun from "/public/imgs/ph_sun-light.png";
+import PropTypes from "prop-types";
 import star from "/public/imgs/ph_star-thin.png";
 import cirle from "/public/imgs/eva_radio-button-off-outline.png";
 import deletes from "/public/imgs/deleteimg.png";
+import { deleteTodo } from "../service/Todo";
 
-export default function Methods() {
+export default function Methods({ todo }) {
+  const { mutate: deleteTodos } = deleteTodo();
+
+  const handleDelete = () => {
+    deleteTodos(todo); // Pass `taskId` and `userId` directly
+  };
+
+  console.log(todo);
   return (
     <div>
       <div
@@ -28,10 +35,19 @@ export default function Methods() {
             <div>
               <img src={deletes} alt="" />
             </div>
-            <span className="text-black">Delete</span>
+            <span onClick={handleDelete} className="text-black">
+              Delete
+            </span>
           </li>
         </ul>
       </div>
     </div>
   );
 }
+
+Methods.propTypes = {
+  todo: PropTypes.shape({
+    taskId: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
+  }).isRequired,
+};

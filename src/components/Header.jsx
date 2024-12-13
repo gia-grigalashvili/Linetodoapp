@@ -75,14 +75,20 @@ export default function Header() {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } lg:block fixed left-0 lg:top-0 h-full lg:w-[25%] bg-white shadow-md transition-transform duration-300`}
+        }  lg:block fixed left-0 top-0  h-full  lg:w-[25%]   bg-white shadow-md z-30 transition-transform duration-300`}
       >
-        <div className="p-4 lg:mt-[100px]">
-          <ul className="flex  flex-col gap-[10px]">
+        <div className="p-4  lg:mt-[100px]">
+          <h1
+            onClick={toggleSidebar}
+            className="lg:hidden p-[10px] text-[30px]"
+          >
+            x
+          </h1>
+          <ul className="flex  mt-[100px]  flex-col gap-[10px]">
             {menuItems.map((item) => (
               <li
                 key={item.id}
-                className="flex w-[90%] items-center p-[10px] rounded-md hover:bg-[#C7CAD0]  gap-[10px]"
+                className="flex w-[90%] items-center p-[10px] rounded-md hover:bg-[#C7CAD0] gap-[10px]"
               >
                 <img
                   className={item.id > 2 ? "w-[20px] h-[20px]" : ""}
