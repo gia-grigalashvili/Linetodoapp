@@ -11,9 +11,14 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isSearchOpen, setSearchOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleSearch = () => {
+    setSearchOpen(!isSearchOpen);
   };
 
   const menuItems = [
@@ -59,18 +64,33 @@ export default function Header() {
           </svg>
         </div>
 
-        <div className="flex gap-4 items-center justify-end">
+        <div className="flex  gap-4 items-center justify-end">
           <div className="flex gap-[5px]">
             <h1 className="hidden lg:block">EN</h1>
-            <img className="hidden lg:block" src={arrow} alt="" />
+            <img className="hidden lg:block " src={arrow} alt="" />
           </div>
 
-          <img className="lg:hidden" src={Search} alt="Search Icon" />
-          <div className="lg:hidden h-[1rem] bg-[#82868F] w-[0.0625rem]"></div>
+          <img
+            className="lg:hidden cursor-pointer"
+            src={Search}
+            alt="Search Icon"
+            onClick={toggleSearch}
+          />
+          <div className="lg:hidden h-[1rem] bg-[#ffffff] w-[0.0625rem]"></div>
 
           <UserButton afterSignOutUrl="/signin" />
         </div>
       </div>
+
+      {isSearchOpen && (
+        <div className="p-4 bg-[#d6d6d6]">
+          <input
+            type="text"
+            className="w-full p-[10px] rounded-[10px] pl-[30px]"
+            placeholder="Type to search..."
+          />
+        </div>
+      )}
 
       <div
         className={`${
