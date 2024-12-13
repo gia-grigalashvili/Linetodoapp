@@ -47,8 +47,8 @@ export default function Adddashboard() {
   }
 
   return (
-    <div className="p-[20px] ">
-      <div className="flex mt-[40px] items-center justify-center">
+    <div className="p-[20px]  flex justify-center items-center flex-col">
+      <div className="flex mt-[40px] items-center w-[300px] lg:w-[400px] justify-center">
         <button
           className="flex items-center relative w-full max-w-lg mb-[2.5rem] shadow-sm rounded-md p-2"
           style={{
@@ -65,7 +65,11 @@ export default function Adddashboard() {
           />
         </button>
       </div>
-      <ul className=" grid lg:grid lg:grid-cols-3 gap-6 lg:gap-6 mb-[3rem]   md:grid md:grid-cols-2 md:gap-6">
+      <h1 className="uppercase text-[#646464] font-bold text-[1.8rem] lg:text-[2.5rem]">
+        ALL Tasks
+      </h1>
+
+      <ul className=" grid lg:grid lg:grid-cols-3 gap-6 lg:gap-6 mb-[3rem]  mt-[30px] md:grid md:grid-cols-2 md:gap-6">
         {data?.map((todo, index) => {
           const backgroundColor = getRandomColor(); // Set color for each todo item separately
 

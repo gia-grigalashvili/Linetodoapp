@@ -33,3 +33,25 @@ export const deleteTodo = async (userId, taskId) => {
 
   return data;
 };
+
+export const markImportant = async ({ userId, updatedTask, taskId }) => {
+  const { data, error } = await supabase
+    .from("todo")
+    .update({ isImportant: updatedTask.isImportant })
+    .eq("id", taskId)
+    .eq("user_id", userId);
+
+  if (error) throw error;
+  return data;
+};
+
+export const markcomplate = async ({ userId, updatedTask, taskId }) => {
+  const { data, error } = await supabase
+    .from("todo")
+    .update({ isComplated: updatedTask.isComplated })
+    .eq("id", taskId)
+    .eq("user_id", userId);
+
+  if (error) throw error;
+  return data;
+};
