@@ -19,12 +19,8 @@ export const addTodo = async ({ description, user_id }) => {
   return data;
 };
 
-export const deleteTodo = async (userId, taskId) => {
-  const { data, error } = await supabase
-    .from("todo")
-    .delete()
-    .eq("id", taskId)
-    .eq("user_id", userId);
+export const deleteTodo = async (taskId) => {
+  const { data, error } = await supabase.from("todo").delete().eq("id", taskId);
 
   if (error) {
     console.error("Error deleting the task:", error.message || error);

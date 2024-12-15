@@ -4,10 +4,8 @@ import useInsertTodos from "../hooks/iinsertTodos";
 import { useUser } from "@clerk/clerk-react";
 import plus from "/public/imgs/Vectors.png";
 import { format } from "date-fns";
-import dateicon from "/public/imgs/dateicon.png";
-import { colors } from "../colors/colors";
-import three from "/public/imgs/Frame 20063.png";
-import Methodss from "./Methodss";
+
+import Todos from "./Todos";
 
 export default function Adddashboard() {
   const formattedDate = format(new Date(), "dd/MM/yy");
@@ -15,26 +13,12 @@ export default function Adddashboard() {
   const { data, error, isLoading, isError } = useGetTodos(user.id);
   const { mutateAsync: addTodo } = useInsertTodos();
   const [description, setDescription] = useState("");
-  const [showMethodsIndex, setShowMethodsIndex] = useState(null); //methodebis state
 
-  // Helper function to generate random colors
-  const getRandomColor = () => {
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
   //damateba todos
   const handleAddTodo = async () => {
     if (description.trim() !== "") {
       await addTodo({ description, user_id: user.id, date: formattedDate });
       setDescription("");
-    }
-  };
-
-  // meethodis gamochena imave indexze romelsac vavwebi
-  const toggleMethods = (index) => {
-    if (showMethodsIndex === index) {
-      setShowMethodsIndex(null);
-    } else {
-      setShowMethodsIndex(index);
     }
   };
 
@@ -69,39 +53,7 @@ export default function Adddashboard() {
         ALL Tasks
       </h1>
 
-      <ul className=" grid lg:grid lg:grid-cols-3 gap-6 lg:gap-6 mb-[3rem]  mt-[30px] md:grid md:grid-cols-2 md:gap-6">
-        {data?.map((todo, index) => {
-          const backgroundColor = getRandomColor(); // Set color for each todo item separately
-
-          return (
-            <li
-              key={index}
-              className="  text-black text-siz p-[20px] rounded-[10px]"
-              style={{ backgroundColor }}
-            >
-              <div>
-                <div className="bg-[#FDF8F2]  max-w-[8rem] h-[30px] px-[10px] rounded-full flex justify-start gap-2 items-center mb-4">
-                  <img src={dateicon} alt="Date Icon" />
-                  <p className="text-[14px] font-normal  leading-6">
-                    ({formattedDate})
-                  </p>
-                </div>
-                <p className="text-wrap block text-gray-800 text-sm md:text-base lg:text-lg font-medium whitespace-pre-wrap overflow-ellipsis">
-                  {todo.description}
-                </p>
-                <div className="flex relative justify-end mt-[20%]">
-                  <img
-                    onClick={() => toggleMethods(index)}
-                    src={three}
-                    alt=""
-                  />
-                  {showMethodsIndex === index && <Methodss todo={todo.id} />}
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <Todos formattedDate={formattedDate} data={data} user={user} />
     </div>
   );
 }

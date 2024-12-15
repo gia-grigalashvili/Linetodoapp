@@ -1,17 +1,17 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import star from "/public/imgs/ph_star-thin.png";
-import cirle from "/public/imgs/eva_radio-button-off-outline.png";
+import circle from "/public/imgs/eva_radio-button-off-outline.png";
 import deletes from "/public/imgs/deleteimg.png";
-import { deleteTodo } from "../service/Todo";
+
+import { useDeleteTodo } from "../hooks/delete";
 
 export default function Methods({ todo }) {
-  const { mutate: deleteTodos } = deleteTodo();
-
-  const handleDelete = () => {
-    deleteTodos(todo); // Pass `taskId` and `userId` directly
+  const { mutate: deleteTodos } = useDeleteTodo();
+  console.log(todo);
+  const handleDelete = (todo) => {
+    deleteTodos({ taskId: todo });
   };
 
-  console.log(todo);
   return (
     <div>
       <div
@@ -21,23 +21,24 @@ export default function Methods({ todo }) {
         <ul className="flex flex-col gap-1">
           <li className="flex justify-start py-[0.62rem] hover:bg-gray-100 border-b-[1px] rounded-md gap-3 w-full pl-2 cursor-pointer">
             <div>
-              <img src={star} alt="" />
+              <img src={star} alt="Important Icon" />
             </div>
             <span className="text-black">Important</span>
           </li>
           <li className="flex justify-start py-[0.62rem] gap-3 w-full hover:bg-gray-100 pl-2 rounded-md cursor-pointer border-b-[1px]">
             <div>
-              <img src={cirle} alt="" />
+              <img src={circle} alt="Completed Icon" />
             </div>
             <span className="text-black">Completed</span>
           </li>
-          <li className="flex justify-start py-[0.62rem] gap-3 w-full hover:bg-[#C7CAD0] pl-2 cursor-pointer">
+          <li
+            className="flex justify-start py-[0.62rem] gap-3 w-full hover:bg-[#C7CAD0] pl-2 cursor-pointer"
+            onClick={() => handleDelete(todo)}
+          >
             <div>
-              <img src={deletes} alt="" />
+              <img src={deletes} alt="Delete Icon" />
             </div>
-            <span onClick={handleDelete} className="text-black">
-              Delete
-            </span>
+            <span className="text-black">Delete</span>
           </li>
         </ul>
       </div>
@@ -45,9 +46,13 @@ export default function Methods({ todo }) {
   );
 }
 
-Methods.propTypes = {
-  todo: PropTypes.shape({
-    taskId: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// Methods.propTypes = {
+//   todo: PropTypes.shape({
+//     taskId: PropTypes.number.isRequired,
+//     userId: PropTypes.number.isRequired,
+//   }).isRequired,
+//   setTaskList: PropTypes.func.isRequired,
+//   user: PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//   }).isRequired,
+// };
