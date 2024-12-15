@@ -29,11 +29,11 @@ export default function Todos({ formattedDate, data }) {
               style={{ backgroundColor }}
             >
               <div>
-                <div className="bg-[#FDF8F2] max-w-[8rem] h-[30px] px-3  rounded-full flex items-center gap-2 mb-4">
+                <div className="bg-[#FDF8F2] max-w-[8rem] h-[30px] px-3 rounded-full flex items-center gap-2 mb-4">
                   <img src={dateicon} alt="Date Icon" />
                   <p className="text-sm font-normal">({formattedDate})</p>
                 </div>
-                <p className="text-wrap text-gray-800 text-sm md:text-base lg:text-lg font-medium">
+                <p className="text-wrap text-gray-800 text-sm md:text-base lg:text-lg font-medium break-words">
                   {todo.description}
                 </p>
                 <div className="flex justify-end mt-5 relative">
