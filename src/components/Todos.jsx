@@ -18,14 +18,14 @@ export default function Todos({ formattedDate, data }) {
 
   return (
     <div>
-      <ul className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-12 mt-8">
+      <ul className="grid xl:grid-cols-3 lg:grid-cols-2 gap-6 mb-12 mt-8">
         {data.map((todo, index) => {
           const backgroundColor = getRandomColor(index);
 
           return (
             <li
               key={todo.id}
-              className="text-black w-[400px] p-5 rounded-lg"
+              className="text-black w-[300px] md:w-[300px] p-5 rounded-lg"
               style={{ backgroundColor }}
             >
               <div>
@@ -45,7 +45,9 @@ export default function Todos({ formattedDate, data }) {
                     <img src={three} alt="Menu Icon" />
                   </button>
 
-                  {editMenu === todo.id && <Methodss todo={todo.id} />}
+                  {editMenu === todo.id && (
+                    <Methodss todoarr={todo} todo={todo.id} />
+                  )}
                 </div>
               </div>
             </li>

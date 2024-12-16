@@ -9,7 +9,16 @@ export const getTodos = async (user_id) => {
   if (error) throw error;
   return data;
 };
+export const getImportantTodos = async (user_id) => {
+  const { data, error } = await supabase
+    .from("todo")
+    .select("*")
+    .eq("user_id", user_id)
+    .eq("isImportant", true);
 
+  if (error) throw error;
+  return data;
+};
 export const addTodo = async ({ description, user_id }) => {
   const { data, error } = await supabase
     .from("todo")
@@ -30,12 +39,11 @@ export const deleteTodo = async (taskId) => {
   return data;
 };
 
-export const markImportant = async ({ userId, updatedTask, taskId }) => {
+export const markImportant = async ({ updatedTask, taskId }) => {
   const { data, error } = await supabase
     .from("todo")
-    .update({ isImportant: updatedTask.isImportant })
-    .eq("id", taskId)
-    .eq("user_id", userId);
+    .update({ isImportant: updatedTask })
+    .eq("id", taskId);
 
   if (error) throw error;
   return data;
