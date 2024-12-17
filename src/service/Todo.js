@@ -64,3 +64,14 @@ export const markcomplate = async ({ taskId, updatedTask }) => {
   if (error) throw error;
   return data;
 };
+
+export const getMarkComplate = async (user_id) => {
+  const { data, error } = await supabase
+    .from("todo")
+    .select("*")
+    .eq("user_id", user_id)
+    .eq("isComplated", true);
+
+  if (error) throw error;
+  return data;
+};

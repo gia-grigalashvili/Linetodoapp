@@ -4,7 +4,7 @@ import useInsertTodos from "../hooks/iinsertTodos";
 import { useUser } from "@clerk/clerk-react";
 import plus from "/public/imgs/Vectors.png";
 import { format } from "date-fns";
-
+import { Link } from "react-router-dom";
 import Todos from "./Todos";
 
 export default function Adddashboard() {
@@ -54,6 +54,10 @@ export default function Adddashboard() {
       </h1>
 
       <Todos formattedDate={formattedDate} data={data} user={user} />
+
+      {/* <Link to="/important">
+        <Important></Important>
+      </Link> */}
     </div>
   );
 }

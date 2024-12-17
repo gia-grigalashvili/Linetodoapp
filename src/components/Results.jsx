@@ -1,10 +1,23 @@
 import React from "react";
 
-export default function Results() {
+export default function Results({ todoarr }) {
+  // Calculate counts
+  // eslint-disable-next-line react/prop-types
+  // const allTasksCount = todos.length;
+  // // eslint-disable-next-line react/prop-types
+  // const importantCount = todos.filter((todo) => todo.important).length;
+  // // eslint-disable-next-line react/prop-types
+  // const inProgressCount = todos.filter(
+  //   (todo) => todo.status === "inProgress"
+  // ).length; // Assuming 'status' field exists
+  // // eslint-disable-next-line react/prop-types
+  // const doneCount = todos.filter((todo) => todo.status === "done").length; // Assuming 'status' field exists
+  console.log(todoarr);
   return (
     <div>
       <div>
         <div className="mt-8 grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4 lg:ml-[25%]">
+          {/* All Tasks */}
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">
@@ -13,9 +26,11 @@ export default function Results() {
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
             <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
-              {/* {taskCounts.all} */}
+              {/* {allTasksCount} */}
             </p>
           </div>
+
+          {/* Important Tasks */}
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">
@@ -24,9 +39,11 @@ export default function Results() {
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
             <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
-              {/* {taskCounts.important} */}
+              {/* {importantCount} */}
             </p>
           </div>
+
+          {/* In Progress Tasks */}
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">
@@ -35,24 +52,28 @@ export default function Results() {
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
             <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
-              {/* {taskCounts.inProgress} */}
+              {/* {inProgressCount} */}
             </p>
           </div>
+
+          {/* Done Tasks */}
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">Done</h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
             <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
-              {/* {taskCounts.done} */}
+              {/* {doneCount} */}
             </p>
           </div>
         </div>
-        <div className=" mt-8 flex justify-center gap-4 px-4 flex-wrap mb-10 lg:ml-[25%]">
+
+        {/* Graph and Detailed Info */}
+        <div className="mt-8 flex justify-center gap-4 px-4 flex-wrap mb-10 lg:ml-[25%]">
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md w-full">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">
-                All Tasks
+                All Tasks - Detailed View
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
@@ -70,22 +91,25 @@ export default function Results() {
                   }}
                 ></canvas>
               </div>
-              <div className="ml-5">
+              {/* <div className="ml-5">
                 <ul className="mt-2 flex flex-col gap-6">
                   <li>
                     <span style={{ color: "rgb(128, 188, 0)" }}>●</span>{" "}
-                    Completed: 0 (0.0%)
+                    Completed: {doneCount} (
+                    {((doneCount / allTasksCount) * 100).toFixed(1)}%)
                   </li>
                   <li>
                     <span style={{ color: "rgb(110, 124, 124)" }}>●</span> In
-                    {/* Progress: {taskCounts.inProgress} (100.0%) */}
+                    Progress: {inProgressCount} (
+                    {((inProgressCount / allTasksCount) * 100).toFixed(1)}%)
                   </li>
                   <li>
                     <span style={{ color: "rgb(255, 164, 0)" }}>●</span>{" "}
-                    {/* Important: {taskCounts.important} (0.0%) */}
+                    Important: {importantCount} (
+                    {((importantCount / allTasksCount) * 100).toFixed(1)}%)
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -3,7 +3,8 @@ import dateicon from "/public/imgs/dateicon.png";
 import { colors } from "../colors/colors";
 import three from "/public/imgs/Frame 20063.png";
 import Methodss from "./Methodss";
-
+import Results from "./Results";
+import { Link } from "react-router-dom";
 export default function Todos({ formattedDate, data }) {
   const [editMenu, setEditMenu] = useState(null);
 
@@ -19,7 +20,15 @@ export default function Todos({ formattedDate, data }) {
     <div>
       <ul className="grid xl:grid-cols-3 lg:grid-cols-2 gap-6 mb-12 mt-8">
         {data.map((todo, index) => {
-          const backgroundColor = getRandomColor(index);
+          // Set background color based on conditions
+          let backgroundColor = "";
+          if (todo.isImportant && todo.isCompleted) {
+            backgroundColor = "black";
+          } else if (todo.isComplated) {
+            backgroundColor = "green";
+          } else if (todo.isImportant) {
+            backgroundColor = "yellow";
+          }
 
           return (
             <li
@@ -48,6 +57,7 @@ export default function Todos({ formattedDate, data }) {
                     <Methodss todoarr={todo} todo={todo.id} />
                   )}
                 </div>
+                <link></link>
               </div>
             </li>
           );

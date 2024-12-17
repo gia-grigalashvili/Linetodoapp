@@ -14,8 +14,10 @@ export default function Methods({ todo, todoarr }) {
     important({ taskId: todo, updatedTask: !todo.important });
   };
   const clickComplated = (todo) => {
+    // Toggle the 'Completed' status
     Complated({ taskId: todo, updatedTask: !todo.Complated });
   };
+
   console.log(todoarr);
   const handleDelete = (todo) => {
     deleteTodos({ taskId: todo });
