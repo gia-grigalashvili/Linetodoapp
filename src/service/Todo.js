@@ -9,6 +9,7 @@ export const getTodos = async (user_id) => {
   if (error) throw error;
   return data;
 };
+
 export const getImportantTodos = async (user_id) => {
   const { data, error } = await supabase
     .from("todo")
@@ -19,10 +20,15 @@ export const getImportantTodos = async (user_id) => {
   if (error) throw error;
   return data;
 };
-export const addTodo = async ({ description, user_id }) => {
+export const addTodo = async ({
+  description,
+  user_id,
+  isComplated,
+  isImportant,
+}) => {
   const { data, error } = await supabase
     .from("todo")
-    .insert([{ description, user_id }]);
+    .insert([{ description, user_id, isComplated, isImportant }]);
 
   if (error) throw error;
   return data;
@@ -39,7 +45,7 @@ export const deleteTodo = async (taskId) => {
   return data;
 };
 
-export const markImportant = async ({ updatedTask, taskId }) => {
+export const markImportant = async ({ taskId, updatedTask }) => {
   const { data, error } = await supabase
     .from("todo")
     .update({ isImportant: updatedTask })
@@ -49,12 +55,11 @@ export const markImportant = async ({ updatedTask, taskId }) => {
   return data;
 };
 
-export const markcomplate = async ({ userId, updatedTask, taskId }) => {
+export const markcomplate = async ({ taskId, updatedTask }) => {
   const { data, error } = await supabase
     .from("todo")
-    .update({ isComplated: updatedTask.isComplated })
-    .eq("id", taskId)
-    .eq("user_id", userId);
+    .update({ isComplated: updatedTask })
+    .eq("id", taskId);
 
   if (error) throw error;
   return data;

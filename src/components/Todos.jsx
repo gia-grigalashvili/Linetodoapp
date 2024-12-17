@@ -3,11 +3,10 @@ import dateicon from "/public/imgs/dateicon.png";
 import { colors } from "../colors/colors";
 import three from "/public/imgs/Frame 20063.png";
 import Methodss from "./Methodss";
-// import { deleteTodo } from "../service/Todo";
-// eslint-disable-next-line react/prop-types
+
 export default function Todos({ formattedDate, data }) {
   const [editMenu, setEditMenu] = useState(null);
-  // const { mutate: deleteTodos } = deleteTodo();
+
   const editMenuHandler = (todoId) => {
     setEditMenu(editMenu === todoId ? null : todoId);
   };

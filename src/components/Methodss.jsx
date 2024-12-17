@@ -4,15 +4,19 @@ import deletes from "/public/imgs/deleteimg.png";
 
 import { useDeleteTodo } from "../hooks/delete";
 import { useToggleimportant } from "../hooks/useToggleImportant.js";
+import { useMarcomplate } from "../hooks/usemarcomplate.js";
 
 export default function Methods({ todo, todoarr }) {
   const { mutate: deleteTodos } = useDeleteTodo();
   const { mutate: important } = useToggleimportant();
-
+  const { mutate: Complated } = useMarcomplate();
   const clickImportant = (todo) => {
-    important({ taskId: todo, updatedTask: true });
+    important({ taskId: todo, updatedTask: !todo.important });
   };
-
+  const clickComplated = (todo) => {
+    Complated({ taskId: todo, updatedTask: !todo.Complated });
+  };
+  console.log(todoarr);
   const handleDelete = (todo) => {
     deleteTodos({ taskId: todo });
   };
@@ -36,7 +40,10 @@ export default function Methods({ todo, todoarr }) {
           </li>
 
           {/* Completed Action */}
-          <li className="flex justify-start py-[0.62rem] gap-3 w-full hover:bg-gray-100 pl-2 rounded-md cursor-pointer border-b-[1px]">
+          <li
+            className="flex justify-start py-[0.62rem] gap-3 w-full hover:bg-gray-100 pl-2 rounded-md cursor-pointer border-b-[1px]"
+            onClick={() => clickComplated(todo)}
+          >
             <div>
               <img src={circle} alt="Completed Icon" />
             </div>
