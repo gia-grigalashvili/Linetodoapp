@@ -20,6 +20,7 @@ export const getImportantTodos = async (user_id) => {
   if (error) throw error;
   return data;
 };
+
 export const addTodo = async ({
   description,
   user_id,
