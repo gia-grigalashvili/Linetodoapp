@@ -10,15 +10,16 @@ export default function Methods({ todo, todoarr }) {
   const { mutate: deleteTodos } = useDeleteTodo();
   const { mutate: important } = useToggleimportant();
   const { mutate: Complated } = useMarcomplate();
+
   const clickImportant = (todo) => {
     important({ taskId: todo, updatedTask: !todo.important });
   };
+
   const clickComplated = (todo) => {
     // Toggle the 'Completed' status
     Complated({ taskId: todo, updatedTask: !todo.Complated });
   };
 
-  console.log(todoarr);
   const handleDelete = (todo) => {
     deleteTodos({ taskId: todo });
   };
@@ -38,7 +39,11 @@ export default function Methods({ todo, todoarr }) {
             <div>
               <img src={star} alt="Important Icon" />
             </div>
-            <span className="text-black">Important</span>
+            <span
+              className={`${todo.important ? "text-green-500" : "text-black"}`}
+            >
+              Important
+            </span>
           </li>
 
           {/* Completed Action */}
@@ -49,7 +54,11 @@ export default function Methods({ todo, todoarr }) {
             <div>
               <img src={circle} alt="Completed Icon" />
             </div>
-            <span className="text-black">Completed</span>
+            <span
+              className={`${todo.Complated ? "text-green-500" : "text-black"}`}
+            >
+              Completed
+            </span>
           </li>
 
           {/* Delete Action */}

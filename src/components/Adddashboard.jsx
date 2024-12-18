@@ -52,7 +52,11 @@ export default function Adddashboard() {
       <h1 className="uppercase text-[#646464] font-bold text-[1.8rem] lg:text-[2.5rem]">
         ALL Tasks
       </h1>
-
+      <div className="flex p-[20px] uppercase mt-[20px] text-[25px] font-bold gap-[100px]">
+        <h1 className=" text-yellow-400">Important</h1>
+        <h1 className="text-green-600">Complete</h1>
+        <h1 className="text-purple-600">Complete & Important</h1>
+      </div>
       <Todos formattedDate={formattedDate} data={data} user={user} />
 
       {/* <Link to="/important">

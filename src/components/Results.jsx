@@ -1,6 +1,7 @@
 import React from "react";
-
+// import { useGetTodos } from "../hooks/useGetTodos";
 export default function Results({ todoarr }) {
+  // const { data, error, isLoading, isError } = useGetTodos(user.id);
   // Calculate counts
   // eslint-disable-next-line react/prop-types
   // const allTasksCount = todos.length;
@@ -117,3 +118,61 @@ export default function Results({ todoarr }) {
     </div>
   );
 }
+// import React from "react";
+
+// import Todos from "./Todos";
+// export default function Results() {
+//   // თუ მონაცემები არსებობს
+//   const allTasksCount = data ? data.length : 0;
+//   const importantCount = data
+//     ? data.filter((todo) => todo.important).length
+//     : 0;
+//   const completedCount = data
+//     ? data.filter((todo) => todo.completed).length
+//     : 0;
+//   console.log(data);
+//   return (
+//     <div>
+//       <div className="mt-8 grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4 lg:ml-[25%]">
+//         {/* All Tasks */}
+//         <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
+//           <div className="flex justify-start w-full py-3">
+//             <h2 className="text-[#252931] text-[1rem] font-medium">
+//               All Tasks
+//             </h2>
+//           </div>
+//           <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
+//           <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
+//             {allTasksCount}
+//           </p>
+//         </div>
+
+//         {/* Important Tasks */}
+//         <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
+//           <div className="flex justify-start w-full py-3">
+//             <h2 className="text-[#252931] text-[1rem] font-medium">
+//               Important
+//             </h2>
+//           </div>
+//           <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
+//           <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
+//             {importantCount}
+//           </p>
+//         </div>
+
+//         {/* Completed Tasks */}
+//         <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
+//           <div className="flex justify-start w-full py-3">
+//             <h2 className="text-[#252931] text-[1rem] font-medium">
+//               Completed
+//             </h2>
+//           </div>
+//           <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
+//           <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
+//             {completedCount}
+//           </p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
