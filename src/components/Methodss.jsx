@@ -6,7 +6,7 @@ import { useDeleteTodo } from "../hooks/delete";
 import { useToggleimportant } from "../hooks/useToggleImportant.js";
 import { useMarcomplate } from "../hooks/usemarcomplate.js";
 
-export default function Methods({ todo, todoarr }) {
+export default function Methods({ todo }) {
   const { mutate: deleteTodos } = useDeleteTodo();
   const { mutate: important } = useToggleimportant();
   const { mutate: Complated } = useMarcomplate();
@@ -16,7 +16,6 @@ export default function Methods({ todo, todoarr }) {
   };
 
   const clickComplated = (todo) => {
-    // Toggle the 'Completed' status
     Complated({ taskId: todo, updatedTask: !todo.Complated });
   };
 

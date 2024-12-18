@@ -3,11 +3,12 @@ import dateicon from "/public/imgs/dateicon.png";
 import { colors } from "../colors/colors";
 import three from "/public/imgs/Frame 20063.png";
 import Methodss from "./Methodss";
-import Results from "./Results";
-import { Link } from "react-router-dom";
 
 export default function Todos({ formattedDate, data }) {
   const [editMenu, setEditMenu] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const itemsPerPage = 6; // ყოველ გვერდზე 6 Todo გამოჩნდება
 
   const editMenuHandler = (todoId) => {
     setEditMenu(editMenu === todoId ? null : todoId);
@@ -15,17 +16,31 @@ export default function Todos({ formattedDate, data }) {
 
   const getBackgroundColor = (todo) => {
     return (
-      (todo.isImportant && todo.isComplated && "purple") ||
+      (todo.isImportant && todo.isComplated && "#890fec") ||
       (todo.isComplated && "green") ||
       (todo.isImportant && "yellow") ||
       colors[todo.id % colors.length]
     );
   };
 
+  const handleNext = () => {
+    const maxPage = Math.ceil(data.length / itemsPerPage) - 1;
+    setCurrentPage((prevPage) =>
+      prevPage < maxPage ? prevPage + 1 : prevPage
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : prevPage));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const currentTodos = data.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <div>
       <ul className="grid xl:grid-cols-3 lg:grid-cols-2 gap-6 mb-12 mt-8">
-        {data.map((todo) => {
+        {currentTodos.map((todo) => {
           const backgroundColor = getBackgroundColor(todo);
 
           return (
@@ -60,6 +75,26 @@ export default function Todos({ formattedDate, data }) {
           );
         })}
       </ul>
+
+      {/* Next და Previous ღილაკები */}
+      <div className="flex justify-between mt-4">
+        {currentPage > 0 && (
+          <button
+            onClick={handlePrev}
+            className="bg-gray-300 text-black px-4 py-2 rounded"
+          >
+            Previous
+          </button>
+        )}
+        {startIndex + itemsPerPage < data.length && (
+          <button
+            onClick={handleNext}
+            className="bg-gray-300 text-black px-4 py-2 rounded"
+          >
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
 }

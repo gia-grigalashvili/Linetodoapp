@@ -1,26 +1,33 @@
-import { useState } from "react";
-import { useGetTodos } from "../hooks/useGetTodos";
-import useInsertTodos from "../hooks/iinsertTodos";
+import React, { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import plus from "/public/imgs/Vectors.png";
 import { format } from "date-fns";
-import { Link } from "react-router-dom";
+import { TodoProvider, useTodoContext } from "../context/Context"; // Import the TodoProvider and useTodoContext hook
+import plus from "/public/imgs/Vectors.png";
 import Todos from "./Todos";
+import Results from "./Results";
 
+// The Adddashboard component that will be wrapped by TodoProvider
 export default function Adddashboard() {
-  const formattedDate = format(new Date(), "dd/MM/yy");
-  const { user } = useUser();
-  const { data, error, isLoading, isError } = useGetTodos(user.id);
-  const { mutateAsync: addTodo } = useInsertTodos();
-  const [description, setDescription] = useState("");
+  return (
+    <TodoProvider>
+      <TodoDashboard />
+    </TodoProvider>
+  );
+}
 
-  //damateba todos
-  const handleAddTodo = async () => {
-    if (description.trim() !== "") {
-      await addTodo({ description, user_id: user.id, date: formattedDate });
-      setDescription("");
-    }
-  };
+// The component where context will be used
+function TodoDashboard() {
+  const { user } = useUser();
+  const {
+    formattedDate,
+    data,
+    error,
+    isLoading,
+    isError,
+    description,
+    setDescription,
+    handleAddTodo,
+  } = useTodoContext();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -29,7 +36,7 @@ export default function Adddashboard() {
   if (isError) {
     return <p>{error.message}</p>;
   }
-
+  console.log(data);
   return (
     <div className="p-[20px]  flex justify-center items-center flex-col">
       <div className="flex mt-[40px] items-center w-[300px] lg:w-[400px] justify-center">
@@ -58,10 +65,13 @@ export default function Adddashboard() {
         <h1 className="text-purple-600">Complete & Important</h1>
       </div>
       <Todos formattedDate={formattedDate} data={data} user={user} />
-
-      {/* <Link to="/important">
-        <Important></Important>
-      </Link> */}
+      {/* <Results className="block" data={data}></Results> */}
+      {/* <Results
+        allTasks={data}
+        importantTasks={importantTasks}
+        inProgressTasks={inProgressTasks}
+        doneTasks={doneTasks}
+      /> */}
     </div>
   );
 }

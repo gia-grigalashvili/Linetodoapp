@@ -21,7 +21,7 @@
     "react-dom": "^18.3.1",
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.28.0",
-    "react-slick": "^0.30.2",
+    "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
     "todoappline": "file:"
   },
