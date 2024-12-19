@@ -8,16 +8,18 @@ import evaluation from "/public/imgs/evaluation-Bf1J4d5n.png";
 import complete from "/public/imgs/complete-BS8KPSVz.png";
 import { UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
+import { useTodoContext } from "../context/Todocontext";
 
 export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
+  const { todos, toggleSearch, handleSearchChange } = useTodoContext();
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
-  const toggleSearch = () => {
+  const toggleSearchInput = () => {
     setSearchOpen(!isSearchOpen);
   };
 
@@ -43,6 +45,7 @@ export default function Header() {
             type="text"
             className="w-[400px] bg-[#E7E8EA] p-[10px] rounded-[10px] pl-[30px]"
             placeholder="Search"
+            onChange={handleSearchChange}
           />
           <svg
             className="absolute left-[10px] top-[50%] transform -translate-y-[50%]"
@@ -64,17 +67,17 @@ export default function Header() {
           </svg>
         </div>
 
-        <div className="flex  gap-4 items-center justify-end">
+        <div className="flex gap-4 items-center justify-end">
           <div className="flex gap-[5px]">
             <h1 className="hidden lg:block">EN</h1>
-            <img className="hidden lg:block " src={arrow} alt="" />
+            <img className="hidden lg:block" src={arrow} alt="" />
           </div>
 
           <img
             className="lg:hidden cursor-pointer"
             src={Search}
             alt="Search Icon"
-            onClick={toggleSearch}
+            onClick={toggleSearchInput}
           />
           <div className="lg:hidden h-[1rem] bg-[#ffffff] w-[0.0625rem]"></div>
 
@@ -88,6 +91,7 @@ export default function Header() {
             type="text"
             className="w-full p-[10px] rounded-[10px] pl-[30px]"
             placeholder="Type to search..."
+            onChange={handleSearchChange}
           />
         </div>
       )}

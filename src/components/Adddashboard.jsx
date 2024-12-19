@@ -1,33 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { format } from "date-fns";
-import { TodoProvider, useTodoContext } from "../context/Context"; // Import the TodoProvider and useTodoContext hook
 import plus from "/public/imgs/Vectors.png";
 import Todos from "./Todos";
-import Results from "./Results";
+import { useTodoContext } from "../context/Todocontext";
+import useInsertTodos from "../hooks/iinsertTodos";
+import { useGetTodos } from "../hooks/useGetTodos";
 
-// The Adddashboard component that will be wrapped by TodoProvider
 export default function Adddashboard() {
-  return (
-    <TodoProvider>
-      <TodoDashboard />
-    </TodoProvider>
-  );
-}
-
-// The component where context will be used
-function TodoDashboard() {
+  const formattedDate = format(new Date(), "dd/MM/yy");
   const { user } = useUser();
-  const {
-    formattedDate,
-    data,
-    error,
-    isLoading,
-    isError,
-    description,
-    setDescription,
-    handleAddTodo,
-  } = useTodoContext();
+  console.log(user);
+  const { data, error, isLoading, isError } = useGetTodos(user.id);
+  const { mutateAsync: addTodo } = useInsertTodos();
+  const [description, setDescription] = useState("");
+  const { setTodos } = useTodoContext();
+
+  const handleAddTodo = async () => {
+    if (description.trim() !== "") {
+      await addTodo({ description, user_id: user.id, date: formattedDate });
+      setDescription("");
+    }
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -36,7 +30,10 @@ function TodoDashboard() {
   if (isError) {
     return <p>{error.message}</p>;
   }
-  console.log(data);
+
+  // Directly set the context when the data is fetched
+  setTodos(data); // Now, this will be set immediately when the data is available.
+
   return (
     <div className="p-[20px]  flex justify-center items-center flex-col">
       <div className="flex mt-[40px] items-center w-[300px] lg:w-[400px] justify-center">
@@ -59,19 +56,12 @@ function TodoDashboard() {
       <h1 className="uppercase text-[#646464] font-bold text-[1.8rem] lg:text-[2.5rem]">
         ALL Tasks
       </h1>
-      <div className="flex p-[20px] uppercase mt-[20px] text-[25px] font-bold gap-[100px]">
+      <div className="flex  p-[20px] gap-[20px] uppercase mt-[20px]  lg:text-[25px] font-bold  lg:gap-[100px]">
         <h1 className=" text-yellow-400">Important</h1>
         <h1 className="text-green-600">Complete</h1>
         <h1 className="text-purple-600">Complete & Important</h1>
       </div>
-      <Todos formattedDate={formattedDate} data={data} user={user} />
-      {/* <Results className="block" data={data}></Results> */}
-      {/* <Results
-        allTasks={data}
-        importantTasks={importantTasks}
-        inProgressTasks={inProgressTasks}
-        doneTasks={doneTasks}
-      /> */}
+      <Todos formattedDate={formattedDate} data={data} />
     </div>
   );
 }

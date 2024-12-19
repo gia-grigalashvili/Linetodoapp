@@ -12,10 +12,12 @@ export default function Methods({ todo }) {
   const { mutate: Complated } = useMarcomplate();
 
   const clickImportant = (todo) => {
+    // eslint-disable-next-line react/prop-types
     important({ taskId: todo, updatedTask: !todo.important });
   };
 
   const clickComplated = (todo) => {
+    // eslint-disable-next-line react/prop-types
     Complated({ taskId: todo, updatedTask: !todo.Complated });
   };
 

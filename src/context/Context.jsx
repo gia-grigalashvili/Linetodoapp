@@ -1,9 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext } from "react";
 import { useUser } from "@clerk/clerk-react";
 import PropTypes from "prop-types";
-import { useGetTodos } from "../hooks/useGetTodos";
-import useInsertTodos from "../hooks/iinsertTodos";
-import { format } from "date-fns";
 
 // Default context values for MyContext
 const defaultContextValues = {
@@ -13,14 +11,11 @@ const defaultContextValues = {
 // Create MyContext
 export const MyContext = createContext(defaultContextValues);
 
-// Create TodoContext
-const TodoContext = createContext();
-
-// Create custom hooks to use the contexts
+// Custom hook to use MyContext
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMyContext = () => useContext(MyContext);
-export const useTodoContext = () => useContext(TodoContext);
 
-// Create provider components
+// MyProvider Component
 export const MyProvider = ({ children }) => {
   const { user } = useUser();
   const userid = user?.id;
@@ -28,43 +23,7 @@ export const MyProvider = ({ children }) => {
   return <MyContext.Provider value={{ userid }}>{children}</MyContext.Provider>;
 };
 
-export const TodoProvider = ({ children }) => {
-  const formattedDate = format(new Date(), "dd/MM/yy");
-  const { user } = useUser();
-  const { data, error, isLoading, isError } = useGetTodos(user.id);
-  const { mutateAsync: addTodo } = useInsertTodos();
-  const [description, setDescription] = useState("");
-
-  const handleAddTodo = async () => {
-    if (description.trim() !== "") {
-      await addTodo({ description, user_id: user.id, date: formattedDate });
-      setDescription("");
-    }
-  };
-
-  return (
-    <TodoContext.Provider
-      value={{
-        formattedDate,
-        user,
-        data,
-        error,
-        isLoading,
-        isError,
-        description,
-        setDescription,
-        handleAddTodo,
-      }}
-    >
-      {children}
-    </TodoContext.Provider>
-  );
-};
-
+// PropTypes validation
 MyProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-TodoProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -28,6 +28,7 @@
 //   );
 // }
 
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
@@ -36,6 +37,7 @@ import dateicon from "/public/imgs/dateicon.png";
 import { format } from "date-fns";
 import three from "/public/imgs/Frame 20063.png";
 import Methods from "./Methodss";
+
 export default function Important() {
   const formattedDate = format(new Date(), "dd/MM/yy");
 
@@ -62,7 +64,7 @@ export default function Important() {
         Important Todo
       </h2>
       <ul className="grid xl:grid-cols-3 lg:grid-cols-2 gap-6 mb-12 mt-8">
-        {data.map((todo, index) => {
+        {data.map((todo) => {
           return (
             <li
               key={todo.id}

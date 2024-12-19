@@ -3,12 +3,15 @@ import dateicon from "/public/imgs/dateicon.png";
 import { colors } from "../colors/colors";
 import three from "/public/imgs/Frame 20063.png";
 import Methodss from "./Methodss";
+import { useTodoContext } from "../context/Todocontext";
 
-export default function Todos({ formattedDate, data }) {
+// eslint-disable-next-line react/prop-types
+export default function Todos({ formattedDate }) {
+  const { todos } = useTodoContext(); // Get filtered todos from context
   const [editMenu, setEditMenu] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 6; // ყოველ გვერდზე 6 Todo გამოჩნდება
+  const itemsPerPage = 6; // Display 6 todos per page
 
   const editMenuHandler = (todoId) => {
     setEditMenu(editMenu === todoId ? null : todoId);
@@ -24,7 +27,7 @@ export default function Todos({ formattedDate, data }) {
   };
 
   const handleNext = () => {
-    const maxPage = Math.ceil(data.length / itemsPerPage) - 1;
+    const maxPage = Math.ceil(todos.length / itemsPerPage) - 1;
     setCurrentPage((prevPage) =>
       prevPage < maxPage ? prevPage + 1 : prevPage
     );
@@ -35,7 +38,7 @@ export default function Todos({ formattedDate, data }) {
   };
 
   const startIndex = currentPage * itemsPerPage;
-  const currentTodos = data.slice(startIndex, startIndex + itemsPerPage);
+  const currentTodos = todos.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div>
@@ -76,7 +79,7 @@ export default function Todos({ formattedDate, data }) {
         })}
       </ul>
 
-      {/* Next და Previous ღილაკები */}
+      {/* Next and Previous Buttons */}
       <div className="flex justify-between mt-4">
         {currentPage > 0 && (
           <button
@@ -86,7 +89,7 @@ export default function Todos({ formattedDate, data }) {
             Previous
           </button>
         )}
-        {startIndex + itemsPerPage < data.length && (
+        {startIndex + itemsPerPage < todos.length && (
           <button
             onClick={handleNext}
             className="bg-gray-300 text-black px-4 py-2 rounded"
