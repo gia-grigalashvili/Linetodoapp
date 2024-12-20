@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { format } from "date-fns";
 import plus from "/public/imgs/Vectors.png";
@@ -8,10 +8,11 @@ import useInsertTodos from "../hooks/iinsertTodos";
 import { useGetTodos } from "../hooks/useGetTodos";
 
 export default function Adddashboard() {
+  // const [user, setUser] = useState();
   const formattedDate = format(new Date(), "dd/MM/yy");
   const { user } = useUser();
   console.log(user);
-  const { data, error, isLoading, isError } = useGetTodos(user.id);
+  const { data, error, isLoading, isError } = useGetTodos(user?.id);
   const { mutateAsync: addTodo } = useInsertTodos();
   const [description, setDescription] = useState("");
   const { setTodos } = useTodoContext();
@@ -61,7 +62,7 @@ export default function Adddashboard() {
         <h1 className="text-green-600">Complete</h1>
         <h1 className="text-purple-600">Complete & Important</h1>
       </div>
-      <Todos formattedDate={formattedDate} data={data} />
+      <Todos formattedDate={formattedDate} />
     </div>
   );
 }
