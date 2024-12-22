@@ -37,34 +37,41 @@ export default function Adddashboard() {
   setTodos(data); // Now, this will be set immediately when the data is available.
 
   return (
-    <div className="p-[20px]  flex justify-center items-center flex-col">
-      <div className="flex mt-[40px] items-center w-[300px] lg:w-[400px] justify-center">
-        <button
-          className="flex items-center relative w-full max-w-lg mb-[2.5rem] shadow-sm rounded-md p-2"
-          style={{
-            boxShadow: "0px 2px 4px 2px rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <img onClick={handleAddTodo} src={plus} alt="Add" className="mr-2" />
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder={t("Add a task")}
-            className="outline-none border-none flex-1"
-          />
-        </button>
-      </div>
-      <h1 className="uppercase text-[#646464] font-bold text-[1.8rem] lg:text-[2.5rem]">
-        {t("All Tasks")}
-      </h1>
-      <div className="flex  p-[20px] gap-[20px] uppercase mt-[20px]  lg:text-[25px] font-bold  lg:gap-[100px]">
-        <h1 className=" text-yellow-400">{t("important")}</h1>
+    <div>
+      <div className="p-[20px]  flex h-full justify-center items-center flex-col">
+        <div className="flex mt-[40px] items-center w-[300px] lg:w-[400px] justify-center">
+          <button
+            className="flex items-center relative w-full max-w-lg mb-[2.5rem] shadow-sm rounded-md p-2"
+            style={{
+              boxShadow: "0px 2px 4px 2px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <img
+              onClick={handleAddTodo}
+              src={plus}
+              alt="Add"
+              className="mr-2"
+            />
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={t("Add a task")}
+              className="outline-none border-none flex-1"
+            />
+          </button>
+        </div>
+        <h1 className="uppercase text-[#646464] font-bold text-[1.8rem] lg:text-[2.5rem]">
+          {t("All Tasks")}
+        </h1>
+        <div className="flex  text-[12px] p-[20px] gap-[20px] uppercase mt-[20px]  lg:text-[25px] font-bold  lg:gap-[100px]">
+          <h1 className=" text-yellow-400">{t("important")}</h1>
 
-        <h1 className="text-green-600">{t("Complete")}</h1>
-        <h1 className="text-purple-600">{t("Complete & Important")}</h1>
+          <h1 className="text-green-600">{t("Complete")}</h1>
+          <h1 className="text-purple-600">{t("Complete & Important")}</h1>
+        </div>
+        <Todos formattedDate={formattedDate} />
       </div>
-      <Todos formattedDate={formattedDate} />
     </div>
   );
 }

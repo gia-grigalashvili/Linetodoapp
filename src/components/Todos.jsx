@@ -41,21 +41,21 @@ export default function Todos({ formattedDate }) {
   const currentTodos = todos.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div>
-      <ul className="grid xl:grid-cols-3 lg:grid-cols-2 gap-6 mb-12 mt-8">
+    <div className="dark:bg-black">
+      <ul className="grid xl:grid-cols-3  lg:grid-cols-2 gap-6 mb-12 mt-8">
         {currentTodos.map((todo) => {
           const backgroundColor = getBackgroundColor(todo);
 
           return (
             <li
               key={todo.id}
-              className="text-black w-[300px] md:w-[300px] p-5 rounded-lg"
+              className="text-black dark:bg-[#ececec] w-[300px] md:w-[300px] p-5 rounded-lg"
               style={{ backgroundColor }}
             >
               <div>
                 <div className="bg-[#FDF8F2] max-w-[8rem] h-[30px] px-3 rounded-full flex items-center gap-2 mb-4">
                   <img src={dateicon} alt="Date Icon" />
-                  <p className="text-sm font-normal">({formattedDate})</p>
+                  <p className="text-sm  font-normal">({formattedDate})</p>
                 </div>
                 <p className="text-wrap text-gray-800 text-sm md:text-base lg:text-lg font-medium break-words">
                   {todo.description}

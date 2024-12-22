@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { MyContext } from "../context/Context";
 import { useContext } from "react";
-
+import arrow from "/public/imgs/material-symbols-light_navigate-next.png";
 function LanguageChanger() {
   const { burgerClicked } = useContext(MyContext);
   const { t, i18n } = useTranslation();
@@ -36,9 +36,10 @@ function LanguageChanger() {
         <span className="text-black cursor-pointer hidden-on-small">
           {i18n.language === "en" ? "EN" : "KA"}
         </span>
+
         <img
-          alt="down arrow"
-          className="w-4 h-4 cursor-pointer ml-2 inline-block"
+          src={arrow}
+          className=" cursor-pointer ml-2 inline-block"
           style={{
             transition: "transform 0.3s ease",
             transform: isRotated ? "rotate(180deg)" : "rotate(0deg)",

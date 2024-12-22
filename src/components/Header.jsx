@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Burger from "/public/imgs/Vector.png";
 import Search from "/public/imgs/Vector - Copy.png";
-import arrow from "/public/imgs/material-symbols-light_navigate-next.png";
+
 import sun from "/public/imgs/ph_sun-light.png";
 import star from "/public/imgs/ph_star-thin.png";
 import evaluation from "/public/imgs/evaluation-Bf1J4d5n.png";
@@ -9,9 +9,11 @@ import complete from "/public/imgs/complete-BS8KPSVz.png";
 import { UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import { useTodoContext } from "../context/Todocontext";
+import { useTheme } from "../context/ThemeContext";
 import LanguageChanger from "./LanguageChanger";
 import { useTranslation } from "react-i18next";
 export default function Header() {
+  const { theme, toggleTheme } = useTheme();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const { todos, toggleSearch, handleSearchChange } = useTodoContext();
@@ -70,11 +72,11 @@ export default function Header() {
 
         <div className="flex gap-4 items-center justify-end">
           <div className="flex gap-[5px]">
-            <h1 className="hidden lg:block">
+            <h1 className="">
               {" "}
               <LanguageChanger />
             </h1>
-            <img className="hidden lg:block" src={arrow} alt="" />
+            {/* <img className="hidden lg:block" src={arrow} alt="" /> */}
           </div>
 
           <img
@@ -93,7 +95,7 @@ export default function Header() {
         <div className="p-4 bg-[#d6d6d6]">
           <input
             type="text"
-            className="w-full p-[10px] rounded-[10px] pl-[30px]"
+            className="w-full p-[10px] lg:block rounded-[10px] pl-[30px]"
             placeholder={t("Search")}
             onChange={handleSearchChange}
           />
@@ -103,12 +105,12 @@ export default function Header() {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        }  lg:block fixed left-0 top-0  h-full  lg:w-[25%]   bg-white shadow-md z-30 transition-transform duration-300`}
+        }  lg:block fixed left-0 top-0  h-full dark:bg-[#1b1b1b]  lg:w-[25%]  bg-white shadow-md z-30 transition-transform duration-300`}
       >
         <div className="p-4  lg:mt-[100px]">
           <h1
             onClick={toggleSidebar}
-            className="lg:hidden p-[10px] text-[30px]"
+            className="lg:hidden p-[10px] dark:text-white text-[30px]"
           >
             x
           </h1>
@@ -116,18 +118,27 @@ export default function Header() {
             {menuItems.map((item) => (
               <li
                 key={item.id}
-                className="flex w-[90%] items-center p-[10px] rounded-md hover:bg-[#C7CAD0] gap-[10px]"
+                className="flex w-[90%] items-center p-[10px] rounded-md  hover:bg-[#C7CAD0] gap-[10px]"
               >
                 <img
                   className={item.id > 2 ? "w-[20px] h-[20px]" : ""}
                   src={item.icon}
                   alt={item.name}
                 />
-                <Link to={item.route} className="no-underline text-black">
+                <Link
+                  to={item.route}
+                  className="no-underline lg:text-[20px] dark:text-white text-black"
+                >
                   {item.name}
                 </Link>
               </li>
             ))}
+            <button
+              className="dark:text-white text-black "
+              onClick={toggleTheme}
+            >
+              darck mode
+            </button>
           </ul>
         </div>
       </div>

@@ -11,7 +11,7 @@ export default function Methods({ todo }) {
   const { mutate: deleteTodos } = useDeleteTodo();
   const { mutate: important } = useToggleimportant();
   const { mutate: Complated } = useMarcomplate();
-  const { t } = useTranslation;
+  const { t } = useTranslation();
   const clickImportant = (todo) => {
     // eslint-disable-next-line react/prop-types
     important({ taskId: todo, updatedTask: !todo.important });
