@@ -13,9 +13,11 @@ import { useTheme } from "../context/ThemeContext";
 import LanguageChanger from "./LanguageChanger";
 import { useTranslation } from "react-i18next";
 export default function Header() {
+  // eslint-disable-next-line no-unused-vars
   const { theme, toggleTheme } = useTheme();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const { todos, toggleSearch, handleSearchChange } = useTodoContext();
   const { t } = useTranslation();
   const toggleSidebar = () => {
@@ -133,13 +135,13 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-            <button
-              className="dark:text-white text-black "
-              onClick={toggleTheme}
-            >
-              darck mode
-            </button>
           </ul>
+          <button
+            className="dark:text-white text-[20px] mt-[10px] text-black "
+            onClick={toggleTheme}
+          >
+            darck mode
+          </button>
         </div>
       </div>
     </div>
