@@ -2,15 +2,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Pattern from "../components/Patterns";
-import SingInPage from "../pages/SingInPage";
-import SingUpPage from "../pages/SingUpPage";
+// import SingInPage from "../pages/SingInPage";
+// import SingUpPage from "../pages/SingUpPage";
 
 export default function LayoutUser() {
   return (
     <div className="w-full h-screen flex justify-between items-center gap-[175px] xl:pl-[66px] xl:pr-[45px] overflow-hidden max-w-[1280px] mx-auto">
       <Pattern />
-      <SingInPage></SingInPage>
-      <SingUpPage></SingUpPage>
+
       <Outlet />
     </div>
   );
