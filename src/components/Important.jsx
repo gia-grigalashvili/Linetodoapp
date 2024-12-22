@@ -1,33 +1,3 @@
-// import React from "react";
-// import { useGetImportantTodoss } from "../hooks/getImportantTodos";
-// import { useUser } from "@clerk/clerk-react";
-// import Todos from "./Todos";
-
-// export default function Important() {
-//   const user = useUser();
-//   const { data, error, isLoading, isError } = useGetImportantTodoss(
-//     user.user.id
-//   );
-
-//   if (isLoading) {
-//     return <p>Loading...</p>;
-//   }
-
-//   if (isError) {
-//     return <p>{error.message}</p>;
-//   }
-
-//   // Filter todos where isImportant is true
-//   const importantTodos = data.filter((todo) => todo.isImportant);
-
-//   return (
-//     <div className="ml-[500px] text-black-400 p-[20px]  flex justify-center items-center flex-col">
-//       <h2 className="text-[30px] font-sans-[20px]">Important Todo</h2>
-//       <Todos data={importantTodos} />
-//     </div>
-//   );
-// }
-
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState } from "react";
@@ -37,10 +7,10 @@ import dateicon from "/public/imgs/dateicon.png";
 import { format } from "date-fns";
 import three from "/public/imgs/Frame 20063.png";
 import Methods from "./Methodss";
-
+import { useTranslation } from "react-i18next";
 export default function Important() {
   const formattedDate = format(new Date(), "dd/MM/yy");
-
+  const { t } = useTranslation();
   const user = useUser();
   const { data, error, isLoading, isError } = useGetImportantTodoss(
     user.user.id
@@ -61,7 +31,7 @@ export default function Important() {
   return (
     <div className="lg:ml-[500px] text-black-400 gp-[20px]  flex justify-center items-center flex-col">
       <h2 className="mt-[100px]   font-bold text-yellow-400 uppercase text-[30px] font-sans-[20px]">
-        Important Todo
+        {t("Important Todo")}
       </h2>
       <ul className="grid xl:grid-cols-3 lg:grid-cols-2 gap-6 mb-12 mt-8">
         {data.map((todo) => {

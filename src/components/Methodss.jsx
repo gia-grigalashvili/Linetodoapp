@@ -5,12 +5,13 @@ import deletes from "/public/imgs/deleteimg.png";
 import { useDeleteTodo } from "../hooks/delete";
 import { useToggleimportant } from "../hooks/useToggleImportant.js";
 import { useMarcomplate } from "../hooks/usemarcomplate.js";
+import { useTranslation } from "react-i18next";
 
 export default function Methods({ todo }) {
   const { mutate: deleteTodos } = useDeleteTodo();
   const { mutate: important } = useToggleimportant();
   const { mutate: Complated } = useMarcomplate();
-
+  const { t } = useTranslation;
   const clickImportant = (todo) => {
     // eslint-disable-next-line react/prop-types
     important({ taskId: todo, updatedTask: !todo.important });
@@ -40,11 +41,7 @@ export default function Methods({ todo }) {
             <div>
               <img src={star} alt="Important Icon" />
             </div>
-            <span
-              className={`${todo.important ? "text-green-500" : "text-black"}`}
-            >
-              Important
-            </span>
+            <span className="text-black">{t("important")}</span>
           </li>
 
           {/* Completed Action */}
@@ -55,11 +52,7 @@ export default function Methods({ todo }) {
             <div>
               <img src={circle} alt="Completed Icon" />
             </div>
-            <span
-              className={`${todo.Complated ? "text-green-500" : "text-black"}`}
-            >
-              Completed
-            </span>
+            <span className="text-black">{t("Complete")}</span>
           </li>
 
           {/* Delete Action */}
@@ -70,7 +63,7 @@ export default function Methods({ todo }) {
             <div>
               <img src={deletes} alt="Delete Icon" />
             </div>
-            <span className="text-black">Delete</span>
+            <span className="text-black">{t("Delete")}</span>
           </li>
         </ul>
       </div>

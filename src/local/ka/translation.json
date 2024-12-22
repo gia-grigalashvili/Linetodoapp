@@ -1,0 +1,22 @@
+{
+  "english": "English",
+  "georgian": "ქართული",
+  "My Day": "ჩემი აქტივობა",
+  "important": "მნიშვნელოვანი",
+  "Results": "სტატისტიკა",
+  "Importance": "მნიშვნელოვანი",
+  "Complete": "შესრულებული",
+  "Edit": "შესწორება",
+  "Delete": "წაშლა",
+  "clearImportant": "მნიშვნელოვანი დავალებები ვერ მოიძებნა.",
+  "Add a task": "დაამატე დავალება",
+  "Completed": "შესრულებული",
+  "All Tasks": "ყველა",
+  "In Progress": "მიმდინარეობს",
+  "Done": "შესრულებული",
+  "Search": "ძებნა",
+  "deleteTodos": "თუდუს წაშლა",
+  "Completed Todos": "დასრულებული თუდუ",
+  "Important Todo": "მნიშვნელოვანი თუდუ",
+  "Complete & Important": "შესრულებული და მნიშვნელოვანი"
+}

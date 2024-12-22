@@ -9,12 +9,13 @@ import complete from "/public/imgs/complete-BS8KPSVz.png";
 import { UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import { useTodoContext } from "../context/Todocontext";
-
+import LanguageChanger from "./LanguageChanger";
+import { useTranslation } from "react-i18next";
 export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const { todos, toggleSearch, handleSearchChange } = useTodoContext();
-
+  const { t } = useTranslation();
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
@@ -44,7 +45,7 @@ export default function Header() {
           <input
             type="text"
             className="w-[400px] bg-[#E7E8EA] p-[10px] rounded-[10px] pl-[30px]"
-            placeholder="Search"
+            placeholder={t("Search")}
             onChange={handleSearchChange}
           />
           <svg
@@ -69,7 +70,10 @@ export default function Header() {
 
         <div className="flex gap-4 items-center justify-end">
           <div className="flex gap-[5px]">
-            <h1 className="hidden lg:block">EN</h1>
+            <h1 className="hidden lg:block">
+              {" "}
+              <LanguageChanger />
+            </h1>
             <img className="hidden lg:block" src={arrow} alt="" />
           </div>
 
@@ -90,7 +94,7 @@ export default function Header() {
           <input
             type="text"
             className="w-full p-[10px] rounded-[10px] pl-[30px]"
-            placeholder="Type to search..."
+            placeholder={t("Search")}
             onChange={handleSearchChange}
           />
         </div>

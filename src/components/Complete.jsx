@@ -24,7 +24,7 @@
 //     </div>
 //   );
 // }
-
+import { useTranslation } from "react-i18next";
 import { GetMarkComplate } from "../hooks/getMarkComplate";
 import { useUser } from "@clerk/clerk-react";
 import { useState } from "react";
@@ -37,7 +37,7 @@ export default function Completed() {
   const formattedDate = format(new Date(), "dd/MM/yy");
   const { data, error, isLoading, isError } = GetMarkComplate(user.user.id);
   const [editMenu, setEditMenu] = useState(null);
-
+  const { t } = useTranslation();
   const editMenuHandler = (todoId) => {
     setEditMenu(editMenu === todoId ? null : todoId);
   };
@@ -52,7 +52,7 @@ export default function Completed() {
   return (
     <div className="lg:ml-[500px] text-black-400 gp-[20px]  flex justify-center items-center flex-col">
       <h2 className="text-[30px]  mt-[100px] font-bold uppercase text-green-700 font-sans-[20px]">
-        Completed Todos
+        {t("Completed Todos")}
       </h2>
       <ul className="grid xl:grid-cols-3 lg:grid-cols-2 gap-6 mb-12 mt-8">
         {data.map((todo) => {

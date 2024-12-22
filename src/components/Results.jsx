@@ -2,14 +2,14 @@ import { useUser } from "@clerk/clerk-react";
 import { useGetTodos } from "../hooks/useGetTodos";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
+import { useTranslation } from "react-i18next";
 // Register the necessary components of Chart.js
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Results() {
   const user = useUser();
   const { data, isLoading, isError, error } = useGetTodos(user.user.id);
-
+  const { t } = useTranslation();
   // Calculate task counts
   const allTasksCount = data?.length || 0;
   const importantCount = data?.filter((todo) => todo.isImportant).length || 0;
@@ -45,7 +45,7 @@ export default function Results() {
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">
-                All Tasks
+                {t("All Tasks")}
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
@@ -57,7 +57,7 @@ export default function Results() {
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">
-                Important
+                {t("important")}
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
@@ -69,7 +69,7 @@ export default function Results() {
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
               <h2 className="text-[#252931] text-[1rem] font-medium">
-                In Progress
+                {t("Complete")}
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
@@ -80,7 +80,9 @@ export default function Results() {
 
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
-              <h2 className="text-[#252931] text-[1rem] font-medium">Done</h2>
+              <h2 className="text-[#252931] text-[1rem] font-medium">
+                {t("Done")}
+              </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
             <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">

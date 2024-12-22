@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
 }
-
+import "./i18n";
 const rootElement = document.getElementById("root");
 
 if (!rootElement) {

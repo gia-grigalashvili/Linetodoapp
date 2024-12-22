@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { format } from "date-fns";
 import plus from "/public/imgs/Vectors.png";
@@ -6,8 +6,9 @@ import Todos from "./Todos";
 import { useTodoContext } from "../context/Todocontext";
 import useInsertTodos from "../hooks/iinsertTodos";
 import { useGetTodos } from "../hooks/useGetTodos";
-
+import { useTranslation } from "react-i18next";
 export default function Adddashboard() {
+  const { t } = useTranslation();
   // const [user, setUser] = useState();
   const formattedDate = format(new Date(), "dd/MM/yy");
   const { user } = useUser();
@@ -49,18 +50,19 @@ export default function Adddashboard() {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Add a task"
+            placeholder={t("Add a task")}
             className="outline-none border-none flex-1"
           />
         </button>
       </div>
       <h1 className="uppercase text-[#646464] font-bold text-[1.8rem] lg:text-[2.5rem]">
-        ALL Tasks
+        {t("All Tasks")}
       </h1>
       <div className="flex  p-[20px] gap-[20px] uppercase mt-[20px]  lg:text-[25px] font-bold  lg:gap-[100px]">
-        <h1 className=" text-yellow-400">Important</h1>
-        <h1 className="text-green-600">Complete</h1>
-        <h1 className="text-purple-600">Complete & Important</h1>
+        <h1 className=" text-yellow-400">{t("important")}</h1>
+
+        <h1 className="text-green-600">{t("Complete")}</h1>
+        <h1 className="text-purple-600">{t("Complete & Important")}</h1>
       </div>
       <Todos formattedDate={formattedDate} />
     </div>
