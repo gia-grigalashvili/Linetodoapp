@@ -39,53 +39,53 @@ export default function Results() {
 
   return (
     <div>
-      <div>
-        <div className="mt-8 grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4 lg:ml-[25%]">
+      <div className="h-[100vh] te dark:bg-[#0e0e0e] ">
+        <div className=" p-[20px] grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4 lg:ml-[25%]">
           {/* All Tasks */}
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
-              <h2 className="text-[#252931] text-[1rem] font-medium">
+              <h2 className="text-[#252931] dark:text-white text-[1rem] font-medium">
                 {t("All Tasks")}
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
-            <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
+            <p className="mt-6 dark:text-white mb-[2.69rem] text-[1.75rem] text-[#252931]">
               {allTasksCount}
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
-              <h2 className="text-[#252931] text-[1rem] font-medium">
+              <h2 className="text-[#252931]  dark:text-white text-[1rem] font-medium">
                 {t("important")}
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
-            <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
+            <p className="mt-6 mb-[2.69rem]  dark:text-white text-[1.75rem] text-[#252931]">
               {importantCount}
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
-              <h2 className="text-[#252931] text-[1rem] font-medium">
+              <h2 className="text-[#252931] dark:text-white text-[1rem] font-medium">
                 {t("Complete")}
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
-            <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
+            <p className="mt-6 mb-[2.69rem] dark:text-white text-[1.75rem] text-[#252931]">
               {isComplated}
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center border-[#E7E8EA] border-[1px] rounded-lg px-[0.88rem] shadow-md">
             <div className="flex justify-start w-full py-3">
-              <h2 className="text-[#252931] text-[1rem] font-medium">
+              <h2 className="text-[#252931] dark:text-white text-[1rem] font-medium">
                 {t("Done")}
               </h2>
             </div>
             <div className="w-full h-[1px] bg-[#D7D9DD]"></div>
-            <p className="mt-6 mb-[2.69rem] text-[1.75rem] text-[#252931]">
+            <p className="mt-6 mb-[2.69rem] dark:text-white text-[1.75rem] text-[#252931]">
               {doneCount}
             </p>
           </div>

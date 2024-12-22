@@ -3,7 +3,7 @@ import Adddashboard from "../components/Adddashboard";
 
 export default function HomePage() {
   return (
-    <div className=" lg:ml-[27%] ">
+    <div className=" lg:ml-[20%] ">
       <Adddashboard />
     </div>
   );

@@ -50,7 +50,7 @@ export default function Completed() {
   }
   // h-[100vh] dark:bg-black
   return (
-    <div className="lg:ml-[20%]  text-black-400 gp-[20px]  flex items-center flex-col">
+    <div className="lg:ml-[20%] h-[100vh] dark:bg-[#0e0e0e] text-black-400 gp-[20px]  flex items-center flex-col">
       <h2 className="text-[30px]  mt-[100px] font-bold uppercase text-green-700 font-sans-[20px]">
         {t("Completed Todos")}
       </h2>

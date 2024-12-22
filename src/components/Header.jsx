@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="flex justify-between items-center p-4 bg-white shadow-md relative z-20 lg:ml-[25%]">
+      <div className="flex justify-between items-center p-4 dark:bg-[#0e0e0e]  border-[1px] dark:border-[#E7E8EA] bg-white shadow-md relative z-20 lg:ml-[25%]">
         <img
           src={Burger}
           alt="Burger Menu"
@@ -105,7 +105,7 @@ export default function Header() {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        }  lg:block fixed left-0 top-0  h-full dark:bg-[#1b1b1b]  lg:w-[25%]  bg-white shadow-md z-30 transition-transform duration-300`}
+        }  lg:block fixed left-0 top-0  h-full dark:bg-[#0e0e0e]  border-[1px] dark:border-[#E7E8EA] lg:w-[25%]  bg-white shadow-md z-30 transition-transform duration-300`}
       >
         <div className="p-4  lg:mt-[100px]">
           <h1

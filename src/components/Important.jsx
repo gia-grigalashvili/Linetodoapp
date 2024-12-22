@@ -29,7 +29,7 @@ export default function Important() {
   }
 
   return (
-    <div className="lg:ml-[500px] text-black-400 gp-[20px]  flex justify-center items-center flex-col">
+    <div className="lg:ml-[20%] h-[100vh] dark:bg-[#0e0e0e] text-black-400 gp-[20px]  flex  items-center flex-col">
       <h2 className="mt-[100px]   font-bold text-yellow-400 uppercase text-[30px] font-sans-[20px]">
         {t("Important Todo")}
       </h2>

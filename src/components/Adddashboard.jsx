@@ -38,10 +38,10 @@ export default function Adddashboard() {
 
   return (
     <div>
-      <div className="p-[20px]  flex h-full justify-center items-center flex-col">
+      <div className="p-[20px] h-[100vh] dark:bg-[#0e0e0e]   flex  items-center flex-col">
         <div className="flex mt-[40px] items-center w-[300px] lg:w-[400px] justify-center">
           <button
-            className="flex items-center relative w-full max-w-lg mb-[2.5rem] shadow-sm rounded-md p-2"
+            className="flex items-center relative w-full dark:bg-white max-w-lg mb-[2.5rem] shadow-sm rounded-md p-2"
             style={{
               boxShadow: "0px 2px 4px 2px rgba(0, 0, 0, 0.1)",
             }}

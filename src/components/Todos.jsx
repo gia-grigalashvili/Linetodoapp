@@ -41,7 +41,7 @@ export default function Todos({ formattedDate }) {
   const currentTodos = todos.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="dark:bg-black">
+    <div className="">
       <ul className="grid xl:grid-cols-3  lg:grid-cols-2 gap-6 mb-12 mt-8">
         {currentTodos.map((todo) => {
           const backgroundColor = getBackgroundColor(todo);
