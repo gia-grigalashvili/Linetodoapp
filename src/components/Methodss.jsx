@@ -7,6 +7,7 @@ import { useToggleimportant } from "../hooks/useToggleImportant.js";
 import { useMarcomplate } from "../hooks/usemarcomplate.js";
 import { useTranslation } from "react-i18next";
 
+// eslint-disable-next-line react/prop-types
 export default function Methods({ todo }) {
   const { mutate: deleteTodos } = useDeleteTodo();
   const { mutate: important } = useToggleimportant();
