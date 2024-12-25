@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Burger from "/public/imgs/Vector.png";
 import Search from "/public/imgs/Vector - Copy.png";
-
+import moon from "/public/imgs/moons.png";
 import sun from "/public/imgs/ph_sun-light.png";
 import star from "/public/imgs/ph_star-thin.png";
 import evaluation from "/public/imgs/evaluation-Bf1J4d5n.png";
@@ -37,7 +37,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="flex justify-between items-center p-4 dark:bg-[#0e0e0e]  border-[1px] dark:border-[#E7E8EA] bg-white shadow-md relative z-20 lg:ml-[25%]">
+      <div className="flex justify-between items-center p-4 dark:bg-[#161616]   border-[1px] dark:border-[#E7E8EA] bg-white shadow-md relative z-20 lg:ml-[25%]">
         <img
           src={Burger}
           alt="Burger Menu"
@@ -52,6 +52,7 @@ export default function Header() {
             placeholder={t("Search")}
             onChange={handleSearchChange}
           />
+
           <svg
             className="absolute left-[10px] top-[50%] transform -translate-y-[50%]"
             xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +89,18 @@ export default function Header() {
             onClick={toggleSearchInput}
           />
           <div className="lg:hidden h-[1rem] bg-[#ffffff] w-[0.0625rem]"></div>
-
+          <img
+            onClick={toggleTheme}
+            className="block dark:hidden cursor-pointer "
+            src={sun}
+            alt=""
+          />
+          <img
+            onClick={toggleTheme}
+            className="hidden cursor-pointer dark:block w-[20px] h-[20px]"
+            src={moon}
+            alt=""
+          />
           <UserButton afterSignOutUrl="/signin" />
         </div>
       </div>
@@ -107,7 +119,7 @@ export default function Header() {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        }  lg:block fixed left-0 top-0  h-full dark:bg-[#0e0e0e]  border-[1px] dark:border-[#E7E8EA] lg:w-[25%]  bg-white shadow-md z-30 transition-transform duration-300`}
+        }  lg:block fixed left-0 top-0  h-full dark:bg-[#161616]  border-[1px] dark:border-[#E7E8EA] lg:w-[25%]  bg-white shadow-md z-30 transition-transform duration-300`}
       >
         <div className="p-4  lg:mt-[100px]">
           <h1
@@ -136,12 +148,6 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <button
-            className="dark:text-white text-[20px] mt-[10px] text-black "
-            onClick={toggleTheme}
-          >
-            darck mode
-          </button>
         </div>
       </div>
     </div>

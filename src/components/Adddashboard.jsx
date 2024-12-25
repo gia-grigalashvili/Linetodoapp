@@ -38,7 +38,7 @@ export default function Adddashboard() {
 
   return (
     <div>
-      <div className="p-[20px] h-[100vh] dark:bg-[#0e0e0e]   flex  items-center flex-col">
+      <div className="p-[20px] h-[100vh] dark:bg-[#161616]   flex  items-center flex-col">
         <div className="flex mt-[40px] items-center w-[300px] lg:w-[400px] justify-center">
           <button
             className="flex items-center relative w-full dark:bg-white max-w-lg mb-[2.5rem] shadow-sm rounded-md p-2"

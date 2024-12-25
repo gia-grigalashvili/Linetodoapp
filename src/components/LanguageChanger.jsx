@@ -33,7 +33,7 @@ function LanguageChanger() {
   return (
     <div>
       <div className="relative " onClick={toggleDropdown}>
-        <span className="text-black cursor-pointer hidden-on-small">
+        <span className="text-black dark:text-[#ffffff]  cursor-pointer hidden-on-small">
           {i18n.language === "en" ? "EN" : "KA"}
         </span>
 
